@@ -10,16 +10,26 @@ public class Main {
 		
 		//create instances of album
 		Album album1 = new Album("album1","arigit singh");
-		album1.addsong("alone", 5.2);
-		album1.addsong("kesariya", 3.5);
-		album1.addsong("ae dil hei mushkil", 5.3);
+		album1.addsong("song1", 5.2);
+		album1.addsong("song2", 3.5);
+		album1.addsong("song3", 5.3);
+		album1.addsong("song4", 5.4);
+		album1.addsong("song5", 4.2);
+		album1.addsong("song6", 5.6);
+		
+		
 		
 		//create a playlist initially empty
 		LinkedList<song> myPlayList = new LinkedList<>();
 		
 		// add songs to playlist
-		album1.addToPlayList("alone", myPlayList);
-		album1.addToPlayList("kesariya", myPlayList);
+		album1.addToPlayList("song1", myPlayList);
+		album1.addToPlayList("song2", myPlayList);
+		album1.addToPlayList("song3", myPlayList);
+		album1.addToPlayList("song4", myPlayList);
+		album1.addToPlayList("song5", myPlayList);
+		
+		
 		//System.out.print(album1.addToPlayList("xyz", myPlayList));
 		
 		//printList(myPlayList);
@@ -42,6 +52,7 @@ public class Main {
 		System.out.println("You are listening to the song " + itr.next().getTitle() + "\nEnjoy Uninterrupted Listening!!");
 		showMenu();
 		
+		boolean forward = true;
 		while(true)
 		{
 			int option = sc.nextInt();
@@ -60,9 +71,75 @@ public class Main {
 				printList(playList);
 				break;
 				
-			//case 3:
+			case 3:
+				if(!forward)
+				{
+					if(itr.hasNext())
+					itr.next();//move one place ahead to remove repetition
+				}
+					
+				if(!itr.hasNext())
+				{
+					System.out.println("You have reached end of PlayList");
+				}
+				else
+				{
+					System.out.println("You are listening to " + itr.next());
+				}
+				forward = true;
+				break;
+				//if first we should check the Boolean and if the value is true then the previous action is next if it is false 
+				//then previous action is previous option if next have Boolean false then 
+				//we do next next and if prev have true value then also we do two prev right	
+			case 4:
+				if(forward)
+				{
+					if(itr.hasPrevious()) //before moving just check if there is a song or not in prevoius
+					itr.previous();
+				}
+				if(!itr.hasPrevious())
+				{
+					System.out.println("You have reached the start of PlayList");
+				}
+				else
+				{
+					System.out.println("You are listening to " + itr.previous());
+				}
+				forward = false;
+				break;
 				
-				
+			case 5:
+                if(forward){
+                    if(itr.hasPrevious()){
+                        System.out.println("Now playing "+itr.previous().toString());
+                        forward = false;
+                    }else {
+                        System.out.println("we are at the start of the list");
+                    }
+                }else {
+                    if(itr.hasNext()){
+                        System.out.println("now playing "+itr.next().toString());
+                        forward = true;
+                    }else {
+                        System.out.println("we have reached to the end of list");
+                    }
+                }
+                break;
+                
+            case 6:
+                if (playList.size() >0)
+                {
+                    itr.remove();
+                    if(itr.hasNext())
+                    {
+                        System.out.println("now playing "+itr.next().toString());
+                    }
+                    else 
+                    {
+                        if(itr.hasPrevious())
+                            System.out.println("now playing "+itr.previous().toString());
+                    }
+                }
 			}
 		}
 	}
