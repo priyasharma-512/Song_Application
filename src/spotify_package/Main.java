@@ -107,7 +107,7 @@ public class Main {
 				}
 				forward = false;
 				break;
-				
+				// case 5 is to repeat the song
 			case 5:
                 if(forward){
                     if(itr.hasPrevious()){
@@ -126,7 +126,7 @@ public class Main {
                 }
                 break;
                 
-            case 6:
+			case 6:
                 if (playList.size() >0)
                 {
                     itr.remove();
