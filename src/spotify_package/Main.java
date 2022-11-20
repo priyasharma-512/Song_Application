@@ -108,38 +108,50 @@ public class Main {
 				forward = false;
 				break;
 				// case 5 is to repeat the song
+				
 			case 5:
-                if(forward){
-                    if(itr.hasPrevious()){
-                        System.out.println("Now playing "+itr.previous().toString());
-                        forward = false;
-                    }else {
-                        System.out.println("we are at the start of the list");
-                    }
-                }else {
-                    if(itr.hasNext()){
-                        System.out.println("now playing "+itr.next().toString());
-                        forward = true;
-                    }else {
-                        System.out.println("we have reached to the end of list");
-                    }
-                }
-                break;
-                
+				if(forward)
+				{
+					if(itr.hasPrevious())
+					{
+						System.out.println("Now playing " +itr.previous().toString());
+						forward = false;
+					}
+					else
+					{
+						System.out.println("We are at the start of the list");
+					}
+				}
+				else
+				{
+					if(itr.hasNext())
+					{
+						System.out.println("Now playing "+itr.next().toString());
+						forward = true;
+					}
+					else
+					{
+						System.out.println("We have reached to the end of the list");
+					}
+				}
+				break;
+			
 			case 6:
-                if (playList.size() >0)
-                {
-                    itr.remove();
-                    if(itr.hasNext())
-                    {
-                        System.out.println("now playing "+itr.next().toString());
-                    }
-                    else 
-                    {
-                        if(itr.hasPrevious())
-                            System.out.println("now playing "+itr.previous().toString());
-                    }
-                }
+				if(playList.size() > 0)
+				{
+					itr.remove();
+					if(itr.hasNext())
+					{
+						System.out.println("Now playing " +itr.next().toString());
+					}
+					else
+					{
+						if(itr.hasPrevious())
+						{
+							System.out.println("Now playing " +itr.previous().toString());
+						}
+					}
+				}
 			}
 		}
 	}
